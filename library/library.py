@@ -39,7 +39,7 @@ class Library:
         with open(self.filename, "w", encoding="utf-8") as f:
             json.dump({
                 "books": [b.to_dict() for b in self.books],
-                "members": {mid: m.to_list() for mid, m in self.members.items()}
+                "members": {mid: m.to_dict() for mid, m in self.members.items()}
             }, f, indent=4)
 
     def load(self):

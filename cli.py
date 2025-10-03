@@ -1,4 +1,4 @@
-"""Import the requirements"""
+"""import requirements"""
 import click
 from library.library import Library
 
@@ -39,8 +39,11 @@ def list_books():
     """List all books"""
     lib.load()
     for book in lib.books:
-        status = f"""(Borrowed by Member {book.borrowed_by})" if getattr
-        (book, "borrowed_by", None) else "(Available)"""
+        borrowed_by = getattr(book, "borrowed_by", None)
+        if borrowed_by:
+            status = f"(Borrowed by Member {borrowed_by})"
+        else:
+            status = "(Available)"
         click.echo(f"{book} {status}")
 
 
@@ -48,7 +51,7 @@ def list_books():
 def list_members():
     """List all members"""
     lib.load()
-    for member in lib.members.values():  # FIXED: Use .values() for dictionary
+    for member in lib.members.values():
         role = "Admin" if getattr(member, "is_admin", False) else "Member"
         click.echo(f"👤 {member} - {role}")
 
@@ -74,7 +77,6 @@ def delete_book(book_id):
 def delete_member(member_id):
     """Delete a member by ID"""
     lib.load()
-    # FIXED: Use dictionary operations for members
     if member_id in lib.members:
         member = lib.members[member_id]
         del lib.members[member_id]
@@ -117,7 +119,6 @@ def borrow_book(book_id, member_id):
     """Borrow a book for a member"""
     lib.load()
     book = next((b for b in lib.books if b.id == book_id), None)
-    # FIXED: Search in dictionary values
     member = next((m for m in lib.members.values() if m.member_id == member_id), None)
 
     if not book or not member:

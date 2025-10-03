@@ -1,8 +1,8 @@
-"""Import datetime"""
+"""Import time and date"""
 from datetime import datetime
 
 class Book:
-    """MAKE A Book class with auto increment"""
+    """Book class with auto-incremented ID"""
     _id_counter = 1
 
     def __init__(self, title, author, year, category="General"):
@@ -18,15 +18,17 @@ class Book:
         self.year = int(year)
         self.category = category
         self.is_available = True
+        self.borrowed_by = None  # Track who borrowed the book
         self.added_at = datetime.now()
 
     def __str__(self):
-        status = "Available" if self.is_available else "Borrowed"
+        status = "Available" if self.is_available else f"""Borrowed by Member
+        {self.borrowed_by}"""
         return f"""[{self.book_id}] {self.title} by {self.author} ({self.year},
         {self.category}) - {status}"""
 
     def to_dict(self):
-        """MAKE A add_book function"""
+        """Serialize book data"""
         return {
             "id": self.book_id,
             "title": self.title,
@@ -34,5 +36,6 @@ class Book:
             "year": self.year,
             "category": self.category,
             "available": self.is_available,
+            "borrowed_by": self.borrowed_by,
             "added_at": self.added_at.isoformat(),
         }
