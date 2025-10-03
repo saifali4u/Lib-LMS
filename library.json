@@ -1,0 +1,32 @@
+{
+    "books": [
+        {
+            "id": 1,
+            "title": "Python 101",
+            "author": "Guido",
+            "year": 2020,
+            "category": "General",
+            "available": true,
+            "added_at": "2025-10-03T15:36:49.207868"
+        },
+        {
+            "id": 2,
+            "title": "Python 101",
+            "author": "Guido",
+            "year": 2020,
+            "category": "General",
+            "available": true,
+            "added_at": "2025-10-03T15:36:49.207901"
+        },
+        {
+            "id": 3,
+            "title": "Python 101",
+            "author": "Guido",
+            "year": 2020,
+            "category": "General",
+            "available": true,
+            "added_at": "2025-10-03T15:36:49.213897"
+        }
+    ],
+    "members": {}
+}
